@@ -9,39 +9,73 @@
 # Fibonacci sequence starts: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
 # Example: If N = 5, the output should be 0 + 1 + 1 + 2 + 3 = 7
 
-""" # you can use three double-quotes to write multi-line comments
-XXX Write your pseudocode here XXX
+""" Input N
+Set a = 0 and b = 1
+Set total = 0
+Repeat N times:
+    Add a to total
+    Set next_value = a + b
+    Set a = b
+    Set b = next_value
+Output total
 """
 
 # %% ###########################################################
 # Problem 2: Comment your code
 # Comments are very helpful for others (especially when pair-coding!) and yourself to understand your code! Add comments to the following code, which will run but produces the wrong output. Once you comment the code, you should be able to identify the error and fix it (the correct total that should be printed is 12).
-N = 6
+N = 6 # number of Fibonacci numbers to add
 
 a = 0 # set a to the first fibonacci number
 b = 1 # set b to the second fibonacci number
-count = 0
-total = 0
+count = 0 # keeps track of how many Fibonacci numbers we have added
+total = 0 # stores the running sum
 
-while count < N:
-    total = total + b
+while count < N: # repeat until we have added N Fibonacci numbers
 
-    next_value = a + b
-    a = b
-    b = next_value
+    total = total + a # add the current Fibonacci number to the total
 
-    count = count + 1
+    next_value = a + b # calculate the next Fibonacci number
+    a = b # move a to the next Fibonacci number
+    b = next_value # move b to the newly calculated Fibonacci number
+    count = count + 1 # increase the count by 1
 
-print(total)
+print(total) # display the final sum
 
 # %% ###########################################################
 # Problem 3: Using common Python libraries
 # What is the standard deviation of the first 10 numbers in the fibonacci sequence? Use the numpy library to calculate the standard deviation.
+import numpy as np
+
+fib_numbers = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+std_dev = np.std(fib_numbers)
+
+print(std_dev)
 
 # %% ###########################################################
 # Problem 4: Don't repeat yourself by writing functions
 # Write a function that takes an integer N as input and returns the sum of the first N numbers in the fibonacci sequence.
 # Then use this function to calculate the sums for N = 5, 10, 15, 20, 25, and 30 and print them as a list.
+def sum_fib(N):
+    a = 0
+    b = 1
+    total = 0
+    for i in range(N):
+        total = total + a
+        next_value = a + b
+        a = b
+        b = next_value
+    return total
+results = [
+    sum_fib(5),
+    sum_fib(10),
+    sum_fib(15),
+    sum_fib(20),
+    sum_fib(25),
+    sum_fib(30)
+]
+
+print(results)
 
 # %% ###########################################################
 # Problem 5: Read your error messages
@@ -60,9 +94,9 @@ def find_fib_above_limit(limit):
     :return: index of the first number above limit
     :rtype: integer
     """
-    a = "0"
-    b = "1"
-
+    a = 0 # TypeError: was a string
+    b = 1 # was a string
+    index = 0 # Nameerror: index was not defined
     while a <= limit:
         next_value = a + b
         a = b
@@ -83,12 +117,16 @@ def sum_even_fib(limit):
     a, b = 0, 1
     total = 0
     while b <= limit:
-        if b % 2 == 0:  # This line checks if the Fibonacci number is even
-            total = b
+        if b % 2 != 0:  # This line checks if the Fibonacci number is odd
+            total = total + b
         a, b = b, a + b
     return total
-
-
+# %%
 # Add your test cases here
+print(sum_even_fib(5))
+print(sum_even_fib(10))
+print(sum_even_fib(20))
+print(sum_even_fib(50))
 
+# AI citation: Used Claude to help explain Python concepts.
 # %%
