@@ -57,15 +57,15 @@ print(std_dev)
 # Write a function that takes an integer N as input and returns the sum of the first N numbers in the fibonacci sequence.
 # Then use this function to calculate the sums for N = 5, 10, 15, 20, 25, and 30 and print them as a list.
 def sum_fib(N):
-    a = 0
-    b = 1
-    total = 0
-    for i in range(N):
-        total = total + a
-        next_value = a + b
-        a = b
-        b = next_value
-    return total
+    a = 0 # Start with the first Fibonacci number
+    b = 1 # Start with the second Fibonacci number
+    total = 0 # Keep track of the sum
+    for i in range(N): # Repeat N times to add the first N Fibonacci numbers
+        total = total + a # Add the current Fibonacci number to the total
+        next_value = a + b # Calculate the next Fibonacci number
+        a = b # Move a forward in the sequence
+        b = next_value # Move b to the newly calculated number
+    return total # Return the sum of the first N Fibonacci numbers
 results = [
     sum_fib(5),
     sum_fib(10),
@@ -97,13 +97,13 @@ def find_fib_above_limit(limit):
     a = 0 # TypeError: was a string
     b = 1 # was a string
     index = 0 # Nameerror: index was not defined
-    while a <= limit:
-        next_value = a + b
-        a = b
-        b = next_value
-        index += 1
+    while a <= limit: # Keep generating Fibonacci numbers until a goes above the limit
+        next_value = a + b # Calculate the next Fibonacci number
+        a = b # Move a to the next Fibonacci number
+        b = next_value # Store the newly calculated Fibonacci number
+        index += 1 # Increase the index for each Fibonacci number
 
-    return index
+    return index # Return the index of the first Fibonacci number above the limit
 
 
 result = find_fib_above_limit(50)
@@ -114,15 +114,16 @@ print("The index of the first number above your limit is: ", result)
 
 
 def sum_even_fib(limit):
-    a, b = 0, 1
-    total = 0
-    while b <= limit:
+    a, b = 0, 1 # Start the Fibonacci sequence with 0 and 1
+    total = 0 # Keeps track of the sum of the odd Fibonacci numbers
+    while b <= limit: # Keep checking Fibonacci numbers until they go above the limit
         if b % 2 != 0:  # This line checks if the Fibonacci number is odd
-            total = total + b
-        a, b = b, a + b
-    return total
+            total = total + b # Add the odd Fibonacci number to the total
+        a, b = b, a + b # Move to the next two numbers in the Fibonacci sequence
+    return total # Return the final sum of all odd Fibonacci numbers
 # %%
 # Add your test cases here
+# I tested different limits to make sure the function correctly adds only odd Fibonacci numbers
 print(sum_even_fib(5))
 print(sum_even_fib(10))
 print(sum_even_fib(20))
